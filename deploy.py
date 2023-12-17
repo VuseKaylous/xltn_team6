@@ -23,23 +23,21 @@ async def home():
         """
 
 def process_file(files) :
-      path = []
+      files = model.split_many_file(files)
+      filename = []
+      output = []
       duration = []
-      for file in files:
-          parts = file.filename.split(".")
-          if parts[-1] != "wav":
-              return "Not wav file"
-          local_filename = "flask_" + file.filename
-          print(local_filename)
-          file.save(local_filename)
-          path.append("/content/" + local_filename)
-          output = float(subprocess.check_output(['sox', '--i', '-D', local_filename]))
-          duration.append(output)
-      output = model.get_result(path)
+      for (plot, fi) in files:
+          # filename = file.split('/')
+          filename.append(fi)
+          output.append(plot)
+          durex = float(subprocess.check_output(['sox', '--i', '-D', fi]))
+          duration.append(durex)
+      # output = model.get_result(files)
+      # print(len(output))
       ans = 'file uploaded successfully <br>'
       for idx in range(len(output)):
-          ans = ans + "{text: " +  output[idx] + ", duration: " + str(duration[idx]) + "}" +  "<br>"
-
+          ans = ans + "<li> file: " + filename[idx] + ", text: " +  output[idx] + ", duration: " + str(duration[idx]) + "s. </li>" +  "<br>"
       return ans
 
 import time

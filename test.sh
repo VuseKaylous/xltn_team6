@@ -19,3 +19,4 @@ do
 done
 ans=(`$run_py model.py $arg`)
 echo $ans
+rm -r 500test
