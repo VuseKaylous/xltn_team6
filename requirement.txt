@@ -1,0 +1,6 @@
+flask
+Cython
+torch
+torchvision
+torchaudio
+requests
