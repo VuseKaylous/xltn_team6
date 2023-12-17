@@ -20,7 +20,8 @@ import librosa
 
 class RunModel:
     def __init__(self) -> None:
-        self.model = nemo_asr.models.EncDecCTCModel.load_from_checkpoint("checkpoint.ckpt", map_location='cpu')
+        # self.model = nemo_asr.models.EncDecCTCModel.load_from_checkpoint("checkpoint.ckpt", map_location='cpu')
+        self.model = nemo_asr.models.EncDecCTCModel.restore_from(restore_path="mymodel.nemo", map_location='cpu')
 
     def get_result(self, path2audio_files) :
         batch_sz = 4
