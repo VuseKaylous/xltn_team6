@@ -2,9 +2,11 @@ from flask import Flask, request
 import subprocess
 from io import StringIO
 
-from model import get_result
+from model import RunModel
 
 app = Flask(__name__)
+
+model = RunModel()
 
 @app.route("/")
 async def home():
@@ -33,7 +35,7 @@ def process_file(files) :
           path.append("/content/" + local_filename)
           output = float(subprocess.check_output(['sox', '--i', '-D', local_filename]))
           duration.append(output)
-      output = get_result(path)
+      output = model.get_result(path)
       ans = 'file uploaded successfully <br>'
       for idx in range(len(output)):
           ans = ans + "{text: " +  output[idx] + ", duration: " + str(duration[idx]) + "}" +  "<br>"
