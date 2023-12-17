@@ -2,5 +2,5 @@
 
 ## Các câu lệnh sử dụng để test:
 
-- Performance: `bash ./run.sh`
-- Deploy server: `python deploy.py`
+- Performance: `bash ./test.sh`
+- Deploy server: `bash ./deploy.sh`
